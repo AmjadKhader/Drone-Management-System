@@ -1,0 +1,136 @@
+{
+	"info": {
+		"_postman_id": "c03eb081-d14b-4c19-8b18-308415a37f4e",
+		"name": "GPI",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "24489936"
+	},
+	"item": [
+		{
+			"name": "Register Drone",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8092/drone-management-service/api/drones/register?x=4&y=4&direction=north",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8092",
+					"path": [
+						"drone-management-service",
+						"api",
+						"drones",
+						"register"
+					],
+					"query": [
+						{
+							"key": "x",
+							"value": "4"
+						},
+						{
+							"key": "y",
+							"value": "4"
+						},
+						{
+							"key": "direction",
+							"value": "north"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Move Drone",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": {
+						"password": "CreatorOne",
+						"username": "CreatorOne"
+					}
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8092/drone-management-service/api/drones/move/1?command=RM",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8092",
+					"path": [
+						"drone-management-service",
+						"api",
+						"drones",
+						"move",
+						"1"
+					],
+					"query": [
+						{
+							"key": "y",
+							"value": "2",
+							"disabled": true
+						},
+						{
+							"key": "direction",
+							"value": "east",
+							"disabled": true
+						},
+						{
+							"key": "id",
+							"value": "1",
+							"disabled": true
+						},
+						{
+							"key": "command",
+							"value": "RM"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Drones",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:8092/drone-management-service/api/drones/"
+			},
+			"response": []
+		},
+		{
+			"name": "Get drone position",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:8092/drone-management-service/api/drones/1"
+			},
+			"response": []
+		},
+		{
+			"name": "Get drone command history",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:8092/drone-management-service/api/drones/1/commands"
+			},
+			"response": []
+		}
+	]
+}
