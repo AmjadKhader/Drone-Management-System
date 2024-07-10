@@ -1,0 +1,40 @@
+version: '3.8'
+
+services:
+  db-local-postgres:
+    container_name: db-local-postgres
+    image: postgres
+    restart: always
+    ports:
+      - '5432:5432'
+    volumes:
+      - ./db/data:/var/lib/postgresql/data
+    networks:
+      - drone-network
+
+  drone-management-service:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: on-failure
+    image: drone-management-system
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 12345
+      POSTGRES_DB: postgres
+      POSTGRES_HOST: db-local-postgres
+      POSTGRES_PORT: 5432
+    ports:
+      - "8092:8092"
+    depends_on:
+      - db-local-postgres
+    networks:
+      - drone-network
+
+networks:
+  drone-network:
+    driver: bridge
+
+volumes:
+  db:
+    driver: local
