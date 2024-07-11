@@ -37,7 +37,7 @@ public class DroneService {
     }
 
     @Transactional
-    public Drone moveDrone(Long id, String command) {
+    public synchronized Drone moveDrone(Long id, String command) {
         Drone drone = droneRepository.findById(id).orElseThrow(() -> new DroneNotFoundException("Drone not found"));
         drone.move(command);
 
